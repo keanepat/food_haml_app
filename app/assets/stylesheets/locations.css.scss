@@ -1,0 +1,42 @@
+// Place all the styles related to the locations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+$font-stack:    Helvetica, sans-serif;
+$primary-color: #333;
+
+body {
+  font: 100% $font-stack;
+  color: $primary-color;
+}
+
+h1 {
+	font-style:olbique;
+	font-family:"Times New Roman",Georgia,Serif;
+	color: #CC3232;
+}
+
+td{
+	margin-left: 5em;
+}
+
+form_for .action{
+	
+}
+
+li{
+	font-weight: 900;
+	color: #FFD801;
+}
+
+p{
+	b{
+		font-weight: 900;
+		color: #FFFFF;
+	}
+	
+}
+
+#back{
+	left: 175px
+}
