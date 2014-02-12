@@ -2,8 +2,7 @@
 
 = render 'form'
 
-.button.med{class: "raidus round"}
-	= link_to 'Show', @location
 
-.button.med{class: "raidus round"}
-	= link_to 'Back', locations_path
+= link_to 'Show', @location, class: "button raidus round", id: "back"
+
+= link_to 'Back', locations_path, class: "button raidus round", id: "back"

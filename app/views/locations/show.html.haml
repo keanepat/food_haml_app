@@ -1,5 +1,7 @@
 %p#notice= notice
 
+%h2 Current Location
+
 %p
 	%b Address:
 	= @location.address
@@ -10,7 +12,11 @@
 	%b Longitude:
 	= @location.longitude
 
-= image_tag "http://maps.google.com/maps/api/staticmap?size=450x300&sensor=false&zoom=16&markers=#{@location.latitude}%2C#{@location.longitude}"
+= image_tag "http://maps.google.com/maps/api/staticmap?center=#{@location.latitude},#{@location.longitude}&size=450x300&sensor=false&markers=#{@location.latitude}%2C#{@location.longitude}" + @nearbys
+
+/= image_tag @nearbys
+
+//= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude},#{@location.longitude}&size=450x300&markers=#{@location.latitude}%2C#{@location.longitude}" + @nearbys
 
 %h3 Nearby Locations
 - for location in @location.nearbys(10)
@@ -22,3 +28,12 @@
 
 
 = link_to 'Back', locations_path, class: "button raidus round", id: "back"
+
+/- content_for :scripts do
+:javascript
+	handler = Gmaps.build('Google');
+	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+	markers = handler.addMarkers(#{raw @hash.to_json});
+	handler.bounds.extendWith(markers);
+	handler.fitMapToBounds();
+	});

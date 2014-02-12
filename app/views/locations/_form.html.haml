@@ -6,16 +6,19 @@
         - @location.errors.full_messages.each do |msg|
           %li= msg
 
-  .field.row.large-8
-    = f.label :address
-    = f.text_field :address
-  .field.row.large-8
-    = f.label :latitude
-    = f.text_field :latitude
-  .field.row.small-8
-    = f.label :longitude
-    = f.text_field :longitude   
+  .field.row
+    .large-8
+      = f.label :address
+      = f.text_field :address
+  .field.row
+    .large-8
+      = f.label :latitude
+      = f.text_field :latitude
+  .field.row
+    .large-8
+      = f.label :longitude
+      = f.text_field :longitude   
 
-    = f.submit 'New Location', class: "button raidus round"
+  = f.submit 'New Location', class: "button raidus round"
 
 

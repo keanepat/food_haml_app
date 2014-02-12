@@ -7,6 +7,7 @@ gem 'rails', '4.0.2'
 gem 'sqlite3'
 
 gem 'geocoder', '0.9.11'
+gem 'gmaps4rails'
 
 gem 'haml-rails'
 

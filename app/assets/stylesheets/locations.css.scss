@@ -10,15 +10,12 @@ body {
   color: $primary-color;
 }
 
-h1 {
+h1, h2, h3 {
 	font-style:olbique;
 	font-family:"Times New Roman",Georgia,Serif;
 	color: #CC3232;
 }
 
-td{
-	margin-left: 5em;
-}
 
 form_for .action{
 	
@@ -28,15 +25,29 @@ li{
 	font-weight: 900;
 	color: #FFD801;
 }
+h3{
+	li{
+		font-size: medium;
+		font-style:olbique;
+		font-family:"Times New Roman",Georgia,Serif;
+		color: #000000;
+	}
+}
 
 p{
 	b{
-		font-weight: 900;
-		color: #FFFFF;
+		font-size: medium;
+		font-style:olbique;
+		font-family:"Times New Roman",Georgia,Serif;
+		color: #CC3232;
 	}
 	
 }
 
 #back{
-	left: 175px
+	left: 175px;
+}
+
+#maps {
+	left: 175px;
 }

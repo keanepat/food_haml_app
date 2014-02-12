@@ -4,12 +4,25 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
+    if params[:search].present?
+      @locations = Location.near(params[:search], 50)
+    else  
+      @locations = Location.all
+    end
+
     @locations = Location.all
+    @hash = Gmaps4rails.build_markers(@locations) do |location, marker|
+      marker.lat location.latitude
+      marker.lng location.longitude
+    end
   end
 
   # GET /locations/1
   # GET /locations/1.json
   def show
+    @location = Location.find(params[:id])
+    @nearbys = nearbys_location
+    
   end
 
   # GET /locations/new
@@ -61,6 +74,14 @@ class LocationsController < ApplicationController
     end
   end
 
+  def nearbys_location
+    @nearbys = ''
+    for location in @location.nearbys(3)
+      @nearbys += "%7C#{location.latitude},#{location.longitude}"
+    end
+    return @nearbys
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_location
@@ -71,4 +92,6 @@ class LocationsController < ApplicationController
     def location_params
       params.require(:location).permit(:address, :latitude, :longitude)
     end
+    #find nearby locations
+   
 end
