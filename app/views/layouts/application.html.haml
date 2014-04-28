@@ -8,6 +8,23 @@
     = javascript_include_tag "vendor/modernizr"
     = csrf_meta_tags
   %body
-    = yield
-    = javascript_include_tag "application"
-    = yield :scripts
+    %nav.topbar{"data-topbar" => ""}
+    %ul.title-area
+      %li.name
+        %h1 
+          %a{:href => "#"} Food Truck App
+      / %li.toggle-topbar.menu-icon
+      /   %a{:href => "#"} Menu
+    %section.top-bar-section
+      %ul.right
+        %li.has-dropdown
+          %a{:href => "#"} Account
+          %ul.dropdown
+            %li
+              %a{:href => "#"} Log In
+            %li
+              %a{:href => "#"} Log Out
+    %container
+      = yield
+      = javascript_include_tag "application"
+      = yield :scripts

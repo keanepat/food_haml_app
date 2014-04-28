@@ -1,39 +1,42 @@
-%p#notice= notice
+#form	
+	%p#notice= notice
+	
+	%header
+		%h2 Current Location
 
-%h2 Current Location
+	%p
+		%b Address:
+		= @location.address
+	%p
+		%b Latitude:
+		= @location.latitude
+	%p
+		%b Longitude:
+		= @location.longitude
 
-%p
-	%b Address:
-	= @location.address
-%p
-	%b Latitude:
-	= @location.latitude
-%p
-	%b Longitude:
-	= @location.longitude
+	%map
+		= image_tag "http://maps.google.com/maps/api/staticmap?center=#{@location.latitude},#{@location.longitude}&size=450x300&sensor=false&markers=#{@location.latitude}%2C#{@location.longitude}" + @nearbys
 
-= image_tag "http://maps.google.com/maps/api/staticmap?center=#{@location.latitude},#{@location.longitude}&size=450x300&sensor=false&markers=#{@location.latitude}%2C#{@location.longitude}" + @nearbys
+	= image_tag @nearbys
 
-/= image_tag @nearbys
+	/ = image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude},#{@location.longitude}&size=450x300&markers=#{@location.latitude}%2C#{@location.longitude}" + @nearbys
 
-//= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@location.latitude},#{@location.longitude}&size=450x300&markers=#{@location.latitude}%2C#{@location.longitude}" + @nearbys
+	%h3 Nearby Locations
+	- for location in @location.nearbys(10)
+		%li.close
+			= link_to location.address, location
+			(#{location.distance.round(2)} miles)
 
-%h3 Nearby Locations
-- for location in @location.nearbys(10)
-	%li
-		= link_to location.address, location
-		(#{location.distance.round(2)} miles)
-
-= link_to 'Edit', edit_location_path(@location), class: "button raidus round", id: "back"
+	= link_to 'Edit', edit_location_path(@location), class: "button raidus round", id: "back"
 
 
-= link_to 'Back', locations_path, class: "button raidus round", id: "back"
+	= link_to 'Back', locations_path, class: "button raidus round", id: "back"
 
-/- content_for :scripts do
-:javascript
-	handler = Gmaps.build('Google');
-	handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
-	markers = handler.addMarkers(#{raw @hash.to_json});
-	handler.bounds.extendWith(markers);
-	handler.fitMapToBounds();
-	});
+	/- content_for :scripts do
+	:javascript
+		handler = Gmaps.build('Google');
+		handler.buildMap({ provider: {}, internal: {id: 'map'}}, function(){
+		markers = handler.addMarkers(#{raw @hash.to_json});
+		handler.bounds.extendWith(markers);
+		handler.fitMapToBounds();
+		});

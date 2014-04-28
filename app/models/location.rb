@@ -2,7 +2,7 @@ class Location < ActiveRecord::Base
 
 	geocoded_by :address
 
-	geocoded_by :ip_address, :latitude => :lat, :longitude => :long
+	#geocoded_by :ip_address, :latitude => :lat, :longitude => :long
 
 	reverse_geocoded_by :latitude, :longitude
 

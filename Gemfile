@@ -11,7 +11,7 @@ gem 'gmaps4rails'
 
 gem 'haml-rails'
 
-gem 'foundation-rails'
+gem 'zurb-foundation', '~> 4.0.0'
 
 
 # Use SCSS for stylesheets

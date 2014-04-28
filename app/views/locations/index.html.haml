@@ -1,34 +1,32 @@
-
 %h1 Listing locations
-
-=form_tag locations_path, :method => :get do
+=form_tag locations_path, :id => 'form', :method => :get do
   %p
     .field.row.large-8
       =text_field_tag :search, params[:search]
       =submit_tag "Search Near", :name => nil, class: "button raidus round"
-%container1
-  %table
-    %tr
-      %th Address
-      %th Latitude
-      %th Longitude
-      %th
-      %th
-      %th
 
-    %tbody  
-      - @locations.each do |location|
-        %tr
-          %td= location.address
-          %td= location.latitude
-          %td= location.longitude
-          %td= link_to 'Show', location
-          %td= link_to 'Edit', edit_location_path(location)
-          %td= link_to 'Destroy', location, :method => :delete, :data => { :confirm => 'Are you sure?' }
+%table
+  %tr
+    %th Address
+    %th Latitude
+    %th Longitude
+    %th
+    %th
+    %th
+
+  %tbody  
+    - @locations.each do |location|
+      %tr
+        %td= location.address
+        %td= location.latitude
+        %td= location.longitude
+        %td= link_to 'Show', location
+        %td= link_to 'Edit', edit_location_path(location)
+        %td= link_to 'Destroy', location, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
-  = link_to 'New Location', new_location_path, class: "button expand raidus round"
+= link_to 'New Location', new_location_path, class: "button raidus round"
 
 %div{style: "width: 800px;"}
-  #map{style: "width: 800px; height: 400px;"}
+#map{style: "width: 800px; height: 400px;"}
 
